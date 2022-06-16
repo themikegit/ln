@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import axios from "axios";
+import styled from "styled-components";
+import Navigation from "./components/Navigation";
+import Layout from "./layout/Layout";
+import CenterContent from "./components/CenterContent";
+import RightContent from "./components/RightContent";
+import LeftContent from "./components/LeftContent";
+import Column from "./layout/Column";
+import { useEffect, useState } from "react";
+const Body = styled.div`
+  padding: 1%;
+  padding-top: 0;
+  background-color: #f9ecec;
+  padding: 0 15%;
+`;
 function App() {
+  const [posts, setPosts] = useState();
+  useEffect(() => {
+    axios.get("database.json").then((res) => {
+      console.log(res);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Body>
+      <Navigation></Navigation>
+      <Layout>
+        <Column>
+          <LeftContent></LeftContent>
+        </Column>
+        <Column>
+          <CenterContent></CenterContent>
+        </Column>
+        <Column>
+          <RightContent></RightContent>
+        </Column>
+      </Layout>
+    </Body>
   );
 }
 
