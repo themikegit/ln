@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "New things approach",
+      "content": "<BrowserRouter> is the recommended interface for running React Router in a web browser. A <BrowserRouter> stores the current location in the browser's address bar using clean URLs and navigates using the browser's built-in history stack. "
+    },
+    {
+      "id": 2,
+      "title": "ML future analyse",
+      "content": "You can also pass a function as children to customize the content of the <NavLink> component based on their active state, specially useful to change styles on internal elements."
+    },
+    {
+      "id": 3,
+      "title": "Main financial advise",
+      "content": "y default, an active class is added to a <NavLink> component when it is active. This provides the same simple styling mechanism for most users who are upgrading from v5. "
+    }
+  ]
+}

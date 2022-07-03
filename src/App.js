@@ -1,42 +1,35 @@
 import "./App.css";
-import axios from "axios";
+
 import styled from "styled-components";
 import Navigation from "./components/Navigation";
-import Layout from "./layout/Layout";
-import CenterContent from "./components/CenterContent";
-import RightContent from "./components/RightContent";
-import LeftContent from "./components/LeftContent";
-import Column from "./layout/Column";
-import { useEffect, useState } from "react";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { QueryClient, QueryClientProvider } from "react-query";
+import { HomePage } from "./components/Home.page";
 const Body = styled.div`
   padding: 1%;
   padding-top: 0;
-  background-color: #f9ecec;
+
   padding: 0 15%;
 `;
-function App() {
-  const [posts, setPosts] = useState();
-  useEffect(() => {
-    axios.get("database.json").then((res) => {
-      console.log(res);
-    });
-  }, []);
 
+const queryClient = new QueryClient();
+
+function App() {
   return (
-    <Body>
-      <Navigation></Navigation>
-      <Layout>
-        <Column>
-          <LeftContent></LeftContent>
-        </Column>
-        <Column>
-          <CenterContent></CenterContent>
-        </Column>
-        <Column>
-          <RightContent></RightContent>
-        </Column>
-      </Layout>
-    </Body>
+    <QueryClientProvider client={queryClient}>
+      <Body>
+        <Router>
+          <Navigation></Navigation>
+          <Routes>
+            <Route path="/" element={<HomePage />}></Route>
+            <Route path="/network" element={"inprogress"}></Route>
+            <Route path="/jobs" element={"inprogress"}></Route>
+          </Routes>
+        </Router>
+      </Body>
+    </QueryClientProvider>
   );
 }
 
