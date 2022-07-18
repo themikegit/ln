@@ -1,8 +1,10 @@
 import axios from "axios";
+import { useContext } from "react";
 
 import { useQuery } from "react-query";
 import styled, { keyframes } from "styled-components";
 import { getPosts } from "../api";
+import { ModalContext } from "../CommonContext";
 import Column from "../layout/Column";
 import Layout from "../layout/Layout";
 import CenterContent from "./CenterContent";
@@ -22,17 +24,20 @@ export const HomePage = () => {
   //   });
   // }, []);
 
-  interface Response {
-    isLoading: boolean;
-    data: Array<any>;
-  }
+  // interface Response {
+  //   isLoading: boolean;
+  //   data: Array<any>;
+  // }
 
-  const { isLoading, data } = useQuery("db-posts", getPosts());
+  let { handleModal, logName } = useContext(ModalContext);
 
+  const { isLoading, data } = useQuery("db-posts", getPosts);
+  console.log(isLoading, data);
   return (
     <Layout>
       <Column>
         <LeftContent></LeftContent>
+        <button onClick={() => logName("from app righ now")}>Klik</button>
       </Column>
       <Column>
         <CenterContent>
